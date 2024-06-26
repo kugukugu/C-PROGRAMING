@@ -1,0 +1,49 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	int number_1;
+	int number_2;
+	int a = 0;
+
+	printf("자연수 2개를 입력하시오.");
+	scanf("%d %d", &number_1, &number_2);
+
+	int i, j, k;
+	printf("첫 번째 자연수의 약수: ");
+	for (i = 1; i <= number_1; i++)
+	{
+		if (number_1 % i == 0)
+		{
+			printf("%d ", i);
+		}
+	}
+
+	printf("\n");
+
+	printf("두 번째 자연수의 약수: ");
+
+	for (j = 1; j <= number_2; j++)
+	{
+		if (number_2 % j == 0)
+		{
+			printf("%d ", j);
+		}
+	}
+
+	printf("\n");
+
+	printf("최대공약수: ");
+	for (k = 1; k <= number_1 && k <= number_2; k++)
+	{
+		if (number_1 % k ==0 && number_2 % k==0)
+		{
+			a=k;
+		}
+	}
+
+	printf("%d", a);
+
+	return 0;
+}
