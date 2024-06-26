@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	int number;
+	
+	printf("자연수를 입력하시오.");
+	scanf("%d", &number);
+
+	printf("%d의 약수: ", number);
+
+	int i;
+	int count = 0;
+
+	for (i = 1; i <= number; i++)
+	{
+		if ( number % i == 0)
+		{
+			printf("%d ", i);
+			count++;
+		}
+	}
+
+	printf("\n");
+	printf("약수의 개수: %d", count);
+
+	return 0;
+}
