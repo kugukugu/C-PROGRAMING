@@ -1,0 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int Quick_Sort(int n[7])
+{
+
+}
+
+int main()
+{
+	int number[7] = { 3,5,1,2,9,6,4 };
+
+	int result;
+
+	result = Quick_Sort(number);
+	return 0;
+}
