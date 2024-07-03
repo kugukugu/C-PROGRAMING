@@ -1,0 +1,25 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void print_f(int n)
+{
+	if (n == 0)
+	{
+		return; 
+	}
+		
+	printf("%d", n % 10);
+	print_f(n / 10);
+	
+}
+
+int main()
+{
+	int n;
+	printf("자연수를 입력하시오.");
+	scanf("%d", &n);
+
+	print_f(n);
+
+	return 0;
+}
