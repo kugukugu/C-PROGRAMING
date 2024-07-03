@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+
+int Factorial(int n)
+{
+
+	if (n == 1)
+	{
+		return 1;
+	}
+
+	int sum;
+		sum = n * Factorial(n - 1);
+
+		return sum;
+}
+
+int main()
+{
+	int n, sum;
+	printf("자연수를 입력하시오.");
+	scanf("%d", &n);
+
+	sum = Factorial(n);
+
+	printf("%d", sum);
+
+	return 0;
+}
