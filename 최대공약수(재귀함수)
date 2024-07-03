@@ -1,0 +1,45 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int print_f(int n, int q)
+{
+	if (n > q)
+	{
+		if (n % q == 0)
+		{
+			return q;
+		}
+		else
+		{
+			return print_f(q, n % q);
+		}
+	}
+	else if (n < q)
+	{
+		if (q % n == 0)
+		{
+			return n;
+		}
+		else 
+		{
+		return print_f(n, q % n);
+		}
+	}
+}
+
+
+int main()
+{
+	int number_1;
+	int number_2;
+	int result;
+
+	printf("자연수 2개를 입력하시오.");
+	scanf("%d %d", &number_1, &number_2);
+
+	result = print_f(number_1, number_2);
+
+	printf("최대공약수는 %d 입니다.", result);
+	
+	return 0;
+}
