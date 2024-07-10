@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+
+	FILE* fp;
+
+	fp = fopen("test.txt", "w");
+
+	char s[10];
+	scanf("%s", s);
+	strcat(s, "\n");
+	fputs(s, fp);
+
+	scanf("%s", s);
+	strcat(s, "\n");
+	fputs(s, fp);
+
+	scanf("%s", s);
+	strcat(s, "\n");
+	fputs(s, fp);
+
+	fclose(fp);
+
+	return 0;
+
+}
