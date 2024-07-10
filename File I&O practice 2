@@ -1,0 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	char filename[10];
+	int a, b, c;
+
+	printf("파일명을 입력하시오.");
+	scanf("%s", &filename);
+
+	printf("점수 3개를 입력하시오.");
+	scanf("%d %d %d", &a, &b, &c);
+
+	FILE* fp = fopen(filename, "w");
+
+	fprintf(fp, "%d %d %d", a, b, c);
+
+	fclose(fp);
+
+	return 0;
+
+}
