@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+struct student
+{
+	char name[10];
+	int number;
+	int score[6];
+};
+
+int student_number()
+{
+	return rand() % 1000 + 2000;
+}
+
+int student_score()
+{
+	return rand() % 101;
+}
+
+int main()
+{		
+		srand(time(NULL));
+		int i, j;
+		struct student p[5] ;
+
+		FILE* fp;
+		fp = fopen("test.txt", "w");
+
+		for (i = 0; i < 5; i++)
+		{
+			scanf("%s", &p[i].name);
+			printf("%s ",p[i].name);
+			fprintf(fp, "%s ", p[i].name);
+			p[i].number = student_number(); 
+			printf("%d ", p[i].number);
+			fprintf(fp, "%d ", p[i].number);
+			for (j = 0; j < 6; j++)
+			{
+				p[i].score[j] = student_score();
+				printf("%d ", p[i].score[j]);
+				fprintf(fp, " %d", p[i].score[j]);
+			}
+			printf("\n");
+			fprintf(fp, "\n");
+		}
+
+		fclose(fp);
+
+	return 0;
+}
