@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+
+	int a = 10, b = 34, c;
+
+	FILE* fp;
+
+	fp = fopen("hello.txt", "w");
+
+	fprintf(fp, "%d%d", a, b);
+
+	fclose(fp);
+
+	fp = fopen("hello.txt", "r");
+
+	fscanf(fp, "%d", &c);
+
+	printf("ftell: %d\n", ftell(fp));
+
+	fseek(fp,0, SEEK_END);
+	printf("fseek: %d\n", ftell(fp));
+
+	fclose(fp);
+
+
+	return 0;
+}
