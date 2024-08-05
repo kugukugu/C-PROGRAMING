@@ -1,0 +1,42 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include <math.h>
+
+struct Circles
+{
+	int r;
+	int x;               //원의 구조체 만들기
+	int y;
+};
+
+int main()
+{
+	struct Circles v1 = {3, 2, 0};  //원 구조체 변수 2개 만들기
+	struct Circles v2 = {5, 8, 8};
+
+	int i;
+	double a;
+	double angle;
+
+		for (i = 0; i < 10; i++)
+		{
+			v1.x++;
+			printf("x축이 %d번 이동 했습니다. x축 값 = %d\n", i+1, v1.x);
+
+			a = sqrt((v2.y - v1.y) * (v2.y - v1.y) + ( (v2.x - v1.x) * (v2.x - v1.x)));
+																							//충돌 체크
+			if (a < (double)v1.r+(double)v2.r || a == (double)v1.r + (double)v2.r)
+			{
+				
+				printf("%f %f\n", a, (double)v1.r + (double)v2.r);
+				printf("충돌 했네요. ㅉㅉ\n");
+				angle = atan((v2.y - v1.y) / (v2.x - v1.x));
+				printf("충돌 했을 때 각도 = %lf radian\n", angle);  //각도
+
+				break;
+			}
+
+		}
+				
+	return 0;
+}
