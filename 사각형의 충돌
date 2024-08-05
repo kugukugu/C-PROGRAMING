@@ -1,0 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include <math.h>
+
+struct Squares
+{
+	int x;               //사각형의 구조체 만들기
+	int y;
+	int l;
+	int h;
+};
+
+int main()
+{
+	struct Squares v1 = { 0, 0, 3, 2 };  //사각형의 구조체 변수 2개 만들기
+	struct Squares v2 = { 5, 5, 6, 8 };
+
+	int b, a;
+	a = v2.x - v1.x+ v1.l;
+	b = v2.y-v2.h - v1.y;
+	int i;
+
+	for (i = 0; i < 10; i++)
+	{
+		v1.x++;
+		v1.y++;
+		printf("x축이 %d번 이동 했습니다. x축 값 = %d\n", i + 1, v1.x+3);
+
+		if ((a == 0 || a < 0) && (b == 0 || b < 0))
+		{
+			printf("충돌\n");
+			break;
+		}
+
+	}
+
+	return 0;
+}
