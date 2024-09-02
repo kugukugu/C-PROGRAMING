@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <time.h>
+
+int main()
+{
+	int arr[100][100];
+	srand(time(NULL));
+	int i, j, q, n, m;
+	int* p = arr[n][m];
+	printf("n과 m을 입력하시오.");
+	scanf("%d%d", &n, &m);
+	printf("반복할 횟수를 입력하시오.");
+	scanf("%d", &q);
+
+	for (i = 0; i < q; q++)
+	{
+		*p = rand() % 2;
+		p++;
+		if (*p == 0)
+		{
+			p + q;
+			*p = 0;
+			p - q;
+		}
+
+	}
+	return 0;
+}
