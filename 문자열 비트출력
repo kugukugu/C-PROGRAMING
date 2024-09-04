@@ -1,0 +1,32 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int main()
+{
+    int mask = 1 << 7 ;
+
+    char a[10];
+    scanf("%s", &a);
+
+    int k;
+
+    int i;
+    for(k=0; a[k] != '\0'; k++)
+    {
+        for(i=0; i<8; i++)
+        {
+            if(i == 4)
+            {
+                printf(" ");
+            }
+            printf("%d", mask & a[k] ? 1:0 );
+            mask >>= 1;
+        }
+        printf(" | ");
+        mask = 1 << 7;
+    }
+
+    return 0;
+}
