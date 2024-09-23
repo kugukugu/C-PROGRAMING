@@ -1,0 +1,37 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(void)
+{
+    int N;
+    int i, j;
+    int a[100] = { 0 };
+    printf("========= N까지의 소수를 출력 =========\n\n");
+    printf("N을 입력하시오: ");
+    scanf("%d", &N);
+
+    for (i=2; i<=sqrt(N); i++)
+    {
+        if(a[i]==0)
+        {
+            for(j = 2; i * j < N; j++)
+            {
+                a[ i * j ] = 1;
+            }
+        }
+    }
+
+    for(i=2; i < N; i++)
+    {
+        if (a[i]==0)
+        {
+            printf("%d ", i);
+        }
+    }
+
+
+    return 0;
+}
