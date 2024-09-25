@@ -1,0 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+struct Gameplayer
+{
+    int x;
+    int y;
+    int speed;
+    int hasBow;
+    void (* fp)(struct Gameplayer *pp);
+};
+
+void attack(struct Gameplayer *pp)
+{
+    if(pp->hasBow == 0)
+    {
+        printf("활 없음\n");
+        
+        return ;
+    }
+    
+    printf("활 있음\n");
+    
+}
+
+int main()
+{
+    struct Gameplayer p;
+    
+    p.hasBow = 1;
+    
+   // attack(&p);
+   
+   p.fp = &attack;
+   (*p.fp)(&p);
+   
+   return 0;
+}
