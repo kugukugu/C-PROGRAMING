@@ -1,0 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct _Lotto
+{
+    int a[6];   
+    int i;
+    for(i=0; i<6; i++)
+    {
+        p->a[i] =rand() % 44+1;
+        printf("%d ",p->a[i]);
+    }
+    printf("\n");
+    
+    
+};
+int main()
+{
+    srand(time(NULL));
+    int money;
+    printf("금액을 입력하시오.");
+    scanf("%d", &money);
+    money = money / 1000 ;
+    
+    struct _Lotto *p;
+    p = (struct _Lotto*)malloc((sizeof(struct _Lotto) * money); 
+    
+    free(p);
+        
+    return 0;
+}
