@@ -5,16 +5,7 @@
 
 struct _Lotto
 {
-    int a[6];   
-    int i;
-    for(i=0; i<6; i++)
-    {
-        p->a[i] =rand() % 44+1;
-        printf("%d ",p->a[i]);
-    }
-    printf("\n");
-    
-    
+    int a[6];
 };
 int main()
 {
@@ -22,12 +13,36 @@ int main()
     int money;
     printf("금액을 입력하시오.");
     scanf("%d", &money);
-    money = money / 1000 ;
-    
-    struct _Lotto *p;
-    p = (struct _Lotto*)malloc((sizeof(struct _Lotto) * money); 
-    
+    money = money / 1000;
+
+    struct _Lotto* p;
+    p = (struct _Lotto*)malloc(sizeof(struct _Lotto) * money );
+
+    int i,j;
+    int k = 0;
+    int c = 1;
+    printf("==로또 번호 출력==\n");
+    printf("==회차 : 1139==\n");
+   
+    for (i = 0; i < 6*money; i++)
+    {        
+        if (k == 0)
+        {
+            printf("[%d] ", c);
+            c++;
+        }
+        p->a[i] = rand() % 45 + 1;
+        printf("%d ", p->a[i]);
+        k++;
+        if (k == 6)
+        {
+            printf("\n");
+                
+            k = 0;
+        }
+    }
+  
     free(p);
-        
+
     return 0;
 }
