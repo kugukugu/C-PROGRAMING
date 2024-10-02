@@ -1,0 +1,84 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct _Node
+{
+    int order;
+    struct _Node* next;
+} ;
+
+struct _LinkedList
+{
+    struct _Node* first;
+    struct _Node* last;
+};
+
+void intput_order(struct _LinkedList* lkp);
+void print_order(struct _LinkedList* lkp);
+
+int main()
+{
+   struct _LinkedList lk;
+    lk.first = NULL;
+    lk.last = NULL;
+
+    intput_order(&lk);
+    intput_order(&lk);
+    intput_order(&lk);
+
+    print_order(&lk);
+
+    del_order(&lk);
+    del_order(&lk);
+
+    print_order(&lk);
+
+    return 0;
+}
+
+void del_order(struct _LinkedList* lkp)
+{
+    struct _Node* np = lkp -> first;
+    lkp -> first = np-> next;
+    printf("%d 주문을 처리합니다.\n", np->order);
+    free(np);
+}
+
+void print_order(struct _LinkedList* lkp)
+{
+    printf("==========주문을 출력===========\n");
+    struct _Node* np = lkp -> first;
+    while(np != NULL)
+    {
+        printf("%d >> ", np->order);
+        np = np -> next;
+    }
+    printf("\n");
+    printf("================================\n");
+
+}
+
+void intput_order(struct _LinkedList* lkp)
+{
+    printf("주문을 입력하세요..");
+    int n;
+    scanf("%d", &n);
+
+    struct _Node* np = (struct _Node*)malloc(sizeof(struct _Node));
+    np ->order = n;
+    np ->next = NULL;
+
+    if(lkp->last != NULL)
+    {
+        lkp->last->next = np;
+    }
+
+    lkp->last = np;
+
+    if(lkp->first == NULL)
+    {
+        lkp->first = np;
+    }
+}
