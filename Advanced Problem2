@@ -5,7 +5,7 @@
 
 int main()
 {
-    int h, n,m ;
+    int h, n, m ;
     scanf("%d %d %d", &h,&n,&m);
     
     int k=0;
