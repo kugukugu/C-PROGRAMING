@@ -49,7 +49,7 @@ int main()
         drawbar1(y);
     }
 
-    for (degree = 270; degree < 360; degree += 10)
+    for (degree = 270; degree <= 360; degree += 10)
     {
         y = (int)(30 * cos(rad((double)degree)) + 0.5);
         drawbar(y);
