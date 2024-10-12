@@ -1,0 +1,59 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define PI 3.141592
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+double rad(double degree)
+{
+    return degree * PI / 180.0;
+}
+
+void drawbar(double height)
+{
+    for (int i = 0; i < 30; i++)
+    {
+        printf(" ");
+    }
+    for (int i = 0; i <= height; i++)
+    {
+        printf("*");
+    } printf("\n");
+}
+
+void drawbar1(double height)
+{
+    for (int i = 0; i < height; i++)
+    {
+        printf(" ");
+    }
+    for (int i = height; i <= 30; i++)
+    {
+        printf("*");
+    } printf("\n");
+}
+
+int main()
+{
+    int y, degree;
+
+    for (degree = 0; degree < 90; degree += 10)
+    {
+        y = (int)(30 * cos(rad((double)degree)) + 0.5 );
+        drawbar(y);
+    }
+
+    for (degree = 90; degree < 270; degree += 10)
+    {
+        y = (int)(30 * (1+cos(rad((double)degree))) + 0.5);
+        drawbar1(y);
+    }
+
+    for (degree = 270; degree < 360; degree += 10)
+    {
+        y = (int)(30 * cos(rad((double)degree)) + 0.5);
+        drawbar(y);
+    }
+
+    return 0;
+}
