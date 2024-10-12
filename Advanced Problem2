@@ -20,9 +20,7 @@ int main()
         {
             break;
         }
-        
-    }
-    printf("안 미끄러지면 %d\n", j);
+    }printf("안 미끄러지면 %d\n", j);
     
     k = 0;
     j = 0;
@@ -39,8 +37,7 @@ int main()
         }
         
         k -= m;
-    }
-    printf("미끄러지면 %d\n", j);
+    }printf("미끄러지면 %d\n", j);
     
     return 0;
 }
