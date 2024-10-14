@@ -1,0 +1,37 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+void print_(int N , int B)
+{  
+    if (N>0)
+    {
+         print_(N/B , B);
+     
+         if(N%B >= 10)
+         {
+             printf("%c", N%B + 55);
+         }
+         else
+         {
+             printf("%d", N%B);   
+         }  
+   }     
+}
+
+int main()
+{
+    int N,B;
+    scanf("%d", &N);
+    
+    do
+    {
+        scanf("%d", &B);
+               
+    }while(B<2 || B>36);    
+    
+    print_(N , B);
+    
+    return 0;
+}
