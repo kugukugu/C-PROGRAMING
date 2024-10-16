@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h> 
+
+int main() 
+{
+    char str[100];
+    scanf("%s", str); 
+    char *temp = strtok(str,"."); 
+    int length, maxlen = 0;
+    int count = 0;
+    
+    while (temp != NULL) 
+    {
+        length = strlen (temp);
+        
+        if( length > maxlen)
+        {
+            maxlen = length;
+        }
+        
+        temp = strtok(NULL, ".");
+        
+        count += 1;
+        printf("%d", count);	
+    }
+    
+    int i,j;
+    
+    for(i=0; i<maxlen+2; i++)
+    {
+        printf("*");
+    }
+	printf("\n");
+    
+    
+    for(i=0; i<count; i++)
+    {
+        printf("*");
+        for(j=0; j<maxlen+2; j++)
+        {
+            
+        }
+    }
+    
+    
+    
+       
+       
+
+    return 0;
+}
+    
