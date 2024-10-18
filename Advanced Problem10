@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h> 
+
+void drawbar(int N, int M)
+{
+    int i;
+    
+    for(i=0; i<M-N; i++)
+    {
+        printf(" ");
+    }
+    
+    for(i=0; i<2*N-1; i++)
+    {
+        printf("*");
+    }
+    printf("\n");
+    
+    if(N == 1)
+    {
+        return ;
+    }
+    
+    drawbar(N-1, M);
+}
+
+void drawbar2(int N, int M)
+{
+    int i;
+    
+    if(N == 1)
+    {
+        return ;
+    }
+    
+    drawbar2(N-1,M);
+    
+    for(i=0; i<M-N; i++)
+    {
+        printf(" ");
+    }
+    
+    for(i=0; i<2*N-1; i++)
+    {
+        printf("*");
+    }
+    printf("\n");
+}
+
+int main() 
+{
+   int N;
+    
+   scanf("%d", &N);
+    
+   drawbar(N,N);
+   drawbar2(N,N);
+    
+   return 0;
+}
