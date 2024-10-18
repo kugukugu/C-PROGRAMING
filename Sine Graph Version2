@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h> 
+#define PI 3.141592
+
+void drawbar(int y)
+{
+    int i;
+    
+    for(i=0; i<30+y; i++)
+    {
+        printf(" ");    
+    }
+    printf("*\n");
+    
+}
+
+int main() 
+{
+    int i, y;
+    
+    for(i=0; i<360; i+=10)
+    {
+        double degree = PI * i / 180.0;
+        y = (int)(30*cos(degree)+0.5);
+        drawbar(y);
+        
+    }
+    
+    return 0;
+}
