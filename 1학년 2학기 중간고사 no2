@@ -1,0 +1,55 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include<time.h>
+
+void prData(double data[], int n);
+void _selected(double data[], double selected[], double trData[], int n, int j);
+
+int main(void)
+{
+	srand(time(NULL));
+	double data[12] = {8.4, 13.7, 15.0, 16.2, 17.4, 18.0, 18.7, 19.0, 19.6, 20.0, 21.0, 21.0};
+	double trData[5] ;
+	double selected[8] ;
+	
+	int i;
+
+	for (i = 0; i < 5; i++)
+	{
+		_selected(data, selected, trData, 8, i);
+		prData(selected, 8);
+	}
+
+	printf("-----trData------\n");
+	prData(trData, 5);
+
+	return 0;
+}
+
+void prData(double data[], int n)
+{
+	int i;
+
+	for (i = 0; i < n; i++)
+	{
+		printf("\t %0.1lf", data[i]);
+	}
+	printf("\n");
+}
+
+void _selected(double data[], double selected[], double trData[],int n, int j)
+{
+	double sum = 0.0;
+	int i;
+	double average;
+
+	for (i = 0; i < n; i++)	
+	{
+		selected[i] = data[rand() % 12];	
+		sum = sum + selected[i];
+	}
+
+	average = sum / 8.0;
+	trData[j] = average;
+}
