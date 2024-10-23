@@ -1,52 +1,75 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <string.h> 
+#define ROWS 3
+#define COLS 2
 
-int main() 
+int main(void)
 {
-    char str[100];
-    scanf("%s", str); 
-    char *temp = strtok(str,"."); 
-    int length, maxlen = 0;
-    int count = 0;
-    
-    while (temp != NULL) 
-    {
-        length = strlen (temp);
-        
-        if( length > maxlen)
-        {
-            maxlen = length;
-        }
-        
-        temp = strtok(NULL, ".");
-        
-        count += 1;
-        printf("%d", count);	
-    }
-    
-    int i,j;
-    
-    for(i=0; i<maxlen+2; i++)
-    {
-        printf("*");
-    }
-	printf("\n");
-    
-    
-    for(i=0; i<count; i++)
-    {
-        printf("*");
-        for(j=0; j<maxlen+2; j++)
-        {
-            
-        }
-    }
-    
-    
-    
-       
-       
+	char str[100];
+	int line[100];
 
-    return 0;
+	int N = 0, M=1, cnt=0;
+
+	int i,j, line_idx = 0;
+
+	gets(str);
+
+	for(i=0; i<strlen(str); i++)
+    {
+        if (str[i] == ',')
+        {
+            M++;
+            if(cnt > N)
+                N = cnt;
+            line[line_idx++]= cnt;
+            cnt = 0;
+
+        }
+        else
+        {
+            cnt ++;
+
+        }
+
+    }
+
+   line[line_idx++]= cnt;
+    if(cnt > N)
+        N = cnt;
+
+   // printf("%d %d\n", N ,M);
+
+    cnt = 0;
+
+    N +=2;
+    M+=2;
+
+    for(i=0; i<M; i++)
+    {
+        for(j=0; j<N; j++)
+        {
+            if (i==0 || j ==0 || i==M-1 || j == N-1)
+            {
+                    printf("*");
+            }
+            else
+            {
+                if(line[i-1] >= j )
+                {
+                   printf("%c", str[cnt++]);
+                   if (line[i-1] ==  j)
+                    cnt++;
+
+                }
+                else
+                {
+                    printf(" ");
+                }
+            }
+
+        }
+        printf("\n");
+    }
+
+	return 0;
 }
-    
