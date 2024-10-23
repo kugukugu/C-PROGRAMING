@@ -1,0 +1,32 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+    int a =1;
+
+	int n, m=0;
+	scanf("%d", &n);
+
+	//m을 구하시오.
+	int i, j;
+
+	for(i=1; i<=n; i++)
+    {
+        m+=i;
+    }
+
+
+	for(i=0; i<n; i++)
+    {
+        for(j=n; j>i; j--)
+        {
+            printf("%-4d", m--);
+        }
+         printf("\n");
+    }
+
+
+
+	return 0;
+}
