@@ -1,0 +1,80 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+void _L()
+{
+	double i, a, startx, stop, y, sum = 0.0;
+	printf("input (a start stop): ");
+	scanf("%lf %lf %lf", &a, &startx, &stop);
+
+	for (i = startx; i <= stop; i += 0.01)
+	{
+		y = a * i;
+		sum = sum + (0.01 * y);
+	}
+	printf("sum = %lf\n", sum);
+}
+
+void _h()
+{
+	double i, a, startx, stop, y, sum = 0.0;
+	printf("input (a start stop): ");
+	scanf("%lf %lf %lf", &a, &startx, &stop);
+
+	for (i = startx; i <= stop; i += 0.01)
+	{
+		y = a * i*i+1;
+		sum = sum + (0.01 * y);
+	}
+	printf("sum = %lf\n", sum);
+}
+
+void _s()
+{
+	double i, a, startx, stop, y, sum = 0.0;
+	printf("input (a start stop): ");
+	scanf("%lf %lf %lf", &a, &startx, &stop);
+	
+	for (i = startx; i <= stop; i += 0.01)
+	{
+		y = (a * sin(i));
+		sum = sum + (0.01 * y);
+	}
+
+	printf("sum = %lf\n", sum);
+}
+
+int main(void)
+{	
+	while (1)
+	{
+		char input_;
+		printf("Input Menu [L: f(x) = a*x  h: f(x) = a*x*x+1  S: f(x) = a*sin(x)) Q:quit] ? ");
+		scanf("%c", &input_);
+
+		if (input_ == 'l' || input_ == 'L')
+		{
+			_L();
+		}
+		else if (input_ == 'h' || input_ == 'H')
+		{
+			_h();
+		}
+		else if (input_ == 's' || input_ == 'S')
+		{
+			_s();
+		}
+		else if (input_ == 'q' || input_ == 'Q')
+		{
+			printf("Quit!\n");
+			return 0;
+		}
+		else
+		{
+			printf("잘못된 입력\n");
+		}
+		getchar();
+	}
+}
