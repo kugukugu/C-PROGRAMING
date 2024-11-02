@@ -1,0 +1,40 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <time.h>
+#include <string.h>
+
+int anagram(char* p ,char* q)
+{
+    int i,j;
+
+    for(i = 0; p[i]!='\0'; i++)
+    {
+        for(j=0; q[j] != '\0'; j++)
+        {
+            if (p[i]==q[j])
+            {
+                q[j] = '/';
+                break;
+            }
+            if(strlen(q)== j+1)
+            {
+                return 0;
+            }
+        }
+
+    }
+
+    return 1;
+}
+
+int main(void)
+{
+   char str1[100];
+   char str2[100];
+   scanf("%s", str1);
+   scanf("%s", str2);
+
+   printf("%s\n", anagram(str1, str2) ? "anagram" : "not anagram");
+
+	return 0;
+}
