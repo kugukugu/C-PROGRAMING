@@ -6,7 +6,7 @@
 struct member
 {
     char id[31];
-    char name[10];
+    char *name;
     char birth[9];
     char phone_number[14];
     char job[10];
@@ -57,14 +57,25 @@ void id_random_generate(struct member* p)
     }
 }
 
+void input_name (char **p)
+{
+    char temp[100];
+    printf("이름을 입력하시오: \n");
+    scanf("%s", temp);
+
+    *p = (char*)malloc(sizeof(char)*(strlen(temp)+1));
+
+    strcpy(*p, temp);
+}
+
 int main(void)
 {
 
     srand(time(NULL));
     struct member p;
 
-    printf("이름을 입력하시오.\n");
-    scanf("%s", p.name);
+    input_name(&p.name);
+
     printf("주민등록번호 - 뒤 1자리 입력하시오.\n");
     scanf("%s", p.birth);
     printf("직업을 입력하시오.\n");
@@ -119,6 +130,8 @@ int main(void)
     printf("%d\n", p.age);
     printf("%s\n", p.job);
     printf("%c\n", p.mf);
+
+    free(p.name);
 
 	return 0;
 }
