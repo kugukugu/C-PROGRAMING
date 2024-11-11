@@ -16,22 +16,44 @@ struct member
 
 int valid(char *p)
 {
-    int i;
+    int j,i,k=0,m=0;
     char temp[5];
 
     if(strlen(p) != 13 )
     {
         return 0;
     }
+    
     if(p[3] != '-' || p[8] != '-')
     {
         return 0;
     }
+    
     if(p[0] != '0'|| p[1] != '1' || p[2] != '0')
     {
         return 0;
     }
-
+    
+    for(i=0; i<4; i++)
+    {
+         for(j=48; j<=57; j++)
+         {   
+             if((int)p[4+i] == j)
+             {
+                 k+=1;
+             }
+             if((int)p[9+i] == j)
+             {
+                m+=1;
+                break;
+             }
+         }
+        if(k==0 || m==0)
+        {
+            return 0;
+        }
+        k=0,m=0;
+    }
 
     return 1;
 }
