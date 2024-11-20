@@ -1,39 +1,25 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
+#include<stdio.h>
 
-int count_word(char* s);
+void set_pointer(char** q);
+void set_pointer1(char* q);
 
-int main(void)
+int main()
 {
-    int wc = count_word("the c book...");
-    printf("단어의 개수 %d\n", wc);
-  
-	return 0;
+    char* p;
+    set_pointer(&p);
+    printf("오늘의 격언: %s \n", p);
+    set_pointer1(p);
+    printf("오늘의 격언: %s \n", p);
+
+    return 0;
 }
 
-int count_word(char* s)
+void set_pointer(char** q)
 {
-    int i, wc = 0, waiting = 1;
-    
-    for (i=0; s[i] != '\0'; ++i)
-        if(isalpha(s[i]))
-        {
-            if(waiting)
-            {
-                wc++;
-                waiting = 0;
-                
-            }
-            
-            
-        }
-        else 
-            waiting = 1;
-        
-        
-        
-        
-    return wc;
+    *q = "All that glisters is not gold.";
+}
+
+void set_pointer1(char* q)
+{
+    q = "who are you?";
 }
