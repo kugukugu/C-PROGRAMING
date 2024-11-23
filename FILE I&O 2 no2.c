@@ -3,8 +3,6 @@
 #include <time.h>
 #include <string.h>
 
-#include <stdio.h>
-
 int main()
 {
     srand(time(NULL));
@@ -43,12 +41,12 @@ int main()
         return 1;
     }
 
-
     while( g>N || g<0)
     {
         printf("정수를 입력하시오. ");
         scanf("%d", &g ); //입력한 정수번째 숫자를 파일에서 찾아 출력한다.
     }
+    
     int k[2];
     fseek(file, g*sizeof(int), SEEK_SET);
     fread(&g, sizeof(int), 1, file);
@@ -60,7 +58,6 @@ int main()
     for(i=0; i<2; i++)
     {
         printf("%d ",k[i]);
-
     }
 
     fclose(file);//파일닫기
