@@ -1,0 +1,44 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+	FILE* fp, * fpout;
+
+	char buffer[100];
+	int i;
+
+	fp = fopen("snowman.pgm", "rb");
+	if (fp == NULL) 
+	{
+		printf("읽을 파일 오픈 오류\n");
+		exit(1);
+	}
+	fpout = fopen("flip.pgm", "wb");
+	if (fpout == NULL)
+	{
+		printf("쓰기 파일 오픈 오류\n");
+		exit(1);
+	}
+	
+	//P5 300 400 \n comment
+
+	char magic[3]; int width, height;
+	fscanf(fp, "%s%d%d", magic, &width, &height); //read header
+
+	// write outfile header
+	fprintf(fpout, "%s %d %d 255\n", magic , width, height);
+
+	for (i = 1; i <= width * height; i++)
+	{
+		fseek(fp, -i, SEEK_END);
+		putc(getc(fp), fpout);
+	}
+
+	printf("The end of the show.");
+	
+	fclose(fp);
+	fclose(fpout);
+
+	return 0;
+}
