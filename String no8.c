@@ -3,17 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-char compare(char* a, char* b)
+int compare(char** a, char** b)
 {
-    return (*a) - (*b);
+    return strcmp(*a, *b);
 }
 
-char dcompare(char** a, char** b)
+char dcompare(char* a, char* b)
 {
-    return *(*a) - *(*b);
+    return *a - *b;
 }
 
-int main() 
+int main()
 {
     int N, i;
 
@@ -32,18 +32,21 @@ int main()
         gets(p[i]);
     }
 
-    for (i = 0; i < N; i++)
+    qsort(p, N, sizeof(char*), compare);
+
+    for(i=0; i<N; i++)
     {
-        qsort(p, N, sizeof(char*), compare);
         printf("%s\n", p[i]);
     }
 
-    for (i = 0; i < N; i++)
+    printf("\n");
+    
+    for(i=0; i<N; i++)
     {
-        qsort(p[i], 100, sizeof(char**), dcompare);
+        qsort( *(p+i) ,strlen(p[i]),sizeof(char),dcompare);
         printf("%s\n", p[i]);
     }
-    
+
     free(p);
 
     return 0;
