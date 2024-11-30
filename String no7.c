@@ -17,11 +17,12 @@ int main()
 
 	printf("문자열 길이 N을 입력하시오. ");  //문자열 길이를 입력받는다.
 	scanf("%d", &N); 
+	getchar();
 
 	p = (char*)malloc(sizeof(char) * N);
 
 	printf("문자열을 입력하시오. ");               //메모리 공간을 확보하고 문자열을 받아 저장한다.
-	scanf("%s", p);
+	gets(p);
 
 	qsort(p, N - 1, sizeof(char), compare);
 
