@@ -1,0 +1,83 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void)
+{
+	FILE* fpin, * fpout;
+	char ifilename[100], ofilename[100];
+	printf("Type-in inputfilename: ");
+	scanf("%s%*c", ifilename);
+
+	printf("Type-in outputfilename: ");
+	scanf("%s%*c", ofilename);
+
+	 char buffer[300], target[300];
+	int i, j, k;
+
+	fpin = fopen(ifilename, "rb");
+	if (fpin == NULL)
+	{
+		printf("읽을 파일 오픈 오류\n");
+		exit(1);
+	}
+
+	fpout = fopen(ofilename, "wb");
+	if (fpout == NULL)
+	{
+		printf("쓰기 파일 오픈 오류\n");
+		exit(1);
+	}
+
+	//P5 300 400 \n comment
+
+	char magic[3]; int width, height; int channel=1;
+	fscanf(fpin, "%s%d%d", magic, &width, &height); //read header
+
+	// write outfile header
+	fprintf(fpout, "%s %d %d 255\n", magic, width, height);
+
+	if (strcmp("P6", magic) == 0)
+	{
+		channel = 3;
+	}
+
+	fseek(fpin, -width * height * channel, SEEK_END); // grey image
+
+	 char* ibuffer = (char*)malloc(width * channel);
+	 char* obuffer = (char*)malloc(width * channel);
+
+	for (i = 0; i <  height; i++)
+	{
+		fread(ibuffer, 1, width*channel , fpin);
+		if (channel == 1)
+		{
+			for (j = 0; j <= width; j++)
+			{
+				obuffer[j] = ibuffer[width - j - 1];
+			}
+		}
+		else
+		{
+			for (k = 0; k < width; k++)
+			{
+				for (j = 0; j < channel; j++)
+				{
+					obuffer[k*channel+j] = ibuffer[(width - 1 - k) * channel +j ];
+				}
+			}
+		}
+		fwrite(obuffer, sizeof(char), width*channel, fpout);
+	}
+
+	free(ibuffer);
+	free(obuffer);
+
+	printf("The end of the show.");
+
+	fclose(fpin);
+	fclose(fpout);
+
+	return 0;
+}
