@@ -1,0 +1,152 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void reduce_size(char **z, char **q, int size, int width, int height, int channel)
+{
+    int i, j, k;
+
+    if (channel == 1)
+    {
+        for (i = 0; i < height / size; i++)
+        {
+            for (j = 0; j < width / size; j++)
+            {
+                q[i][j] = z[i * size][j * size];
+            }
+        }
+    }
+    else
+    {
+        for (i = 0; i < height / size; i++)
+        {
+            for (j = 0; j < width / size; j++)
+            {
+                for (k = 0; k < channel; k++)
+                {
+                    q[i][j * channel + k] = z[i * size][(j * size) * channel + k];
+                }
+            }
+        }
+    }
+}
+
+int main()
+{
+    FILE* fp, * fp1, * fout, *fout2;
+    char infilename[100], infilename1[100], outfilename[100];
+
+    fp = fopen("roseroad.ppm", "rb");
+    if (fp == NULL)
+    {
+        printf("읽기파일 열기 실패");
+        return 1;
+    }
+    fp1 = fopen("rose.ppm", "rb");
+    if (fp1 == NULL)
+    {
+        printf("읽기파일 열기 실패");
+        return 1;
+    }
+    fout = fopen("hello.ppm", "wb");
+    if (fout == NULL)
+    {
+        printf("쓰기파일 열기 실패");
+        return 1;
+    }
+    fout2 = fopen("x.ppm", "wb");
+    if (fout2 == NULL)
+    {
+        printf("쓰기파일 열기 실패");
+        return 1;
+    }
+
+    int size;
+    printf("축소할 크기를 입력하시오. ");
+    scanf("%d", &size);
+
+    char magic[3];
+    int width, height, channel = 1;
+
+    fscanf(fp, "%s %d %d", magic, &width, &height);
+    if (strcmp("P6", magic) == 0)
+    {
+        channel = 3;
+    }
+
+    fprintf(fout, "%s %d %d 255\n", magic, width, height);
+    fprintf(fout2, "%s %d %d 255\n", magic, width, height);
+    // 메모리 할당
+    char** p = (char**)malloc(sizeof(char*) * height);
+    char** q = (char**)malloc(sizeof(char*) * (height / size));
+    char** z = (char**)malloc(sizeof(char*) * height);
+
+    int i, j;
+
+    fseek(fp, -1*height*width*channel, SEEK_END);
+
+    // 이미지 로드
+    for (i = 0; i < height; i++)
+    {
+        p[i] = (char*)malloc(sizeof(char) * channel * width);
+        fread(p[i], sizeof(char), width * channel, fp);
+        fwrite(p[i], sizeof(char), width * channel, fout2);
+    }
+
+    for (i = 0; i < height; i++)
+    {
+        z[i] = (char*)malloc(sizeof(char) * channel * width);
+        fread(z[i], sizeof(char), width * channel, fp1);
+    }
+
+    for (i = 0; i < height / size; i++)
+    {
+        q[i] = (char*)malloc(sizeof(char) * (width / size) * channel);
+    }
+
+    // reduce_size 함수 호출
+    reduce_size(z, q, size, width, height, channel);
+
+    int x, y;
+    printf("넣을 위치를 입력하시오 (x, y): ");
+    scanf("%d %d", &x, &y);
+
+    // q 이미지를 p에 삽입
+    for (i = 0; i < height / size; i++)
+    {
+        for (j = 0; j < width / size; j++)
+        {
+            for (int k = 0; k < channel; k++)
+            {
+                p[x + i][(y + j) * channel + k] = q[i][j * channel + k];
+            }
+        }
+    }
+
+    // 이미지 저장
+    for (i = 0; i < height; i++)
+    {
+        fwrite(p[i], sizeof(char), width * channel, fout);
+    }
+
+    // 메모리 해제
+    for (i = 0; i < height; i++)
+    {
+        free(p[i]);
+        free(z[i]);
+    }
+    for (i = 0; i < height / size; i++)
+    {
+        free(q[i]);
+    }
+    free(p);
+    free(q);
+    free(z);
+
+    fclose(fp);
+    fclose(fp1);
+    fclose(fout);
+
+    return 0;
+}
