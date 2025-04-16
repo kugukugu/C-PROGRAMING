@@ -15,7 +15,7 @@ void deleteChars(char *str, char *ch)
 			if(p[i]==ch[j])
 			{
 				p1=&p[i];
-				strncat(str1,p2,p1-p2);
+				strncat(str1,p2,p1-p2); //p[i]='\0';
 				p1+=1;
 				p2=p1;
 			}
@@ -23,6 +23,16 @@ void deleteChars(char *str, char *ch)
 	}
 	strcat(str1,p1);
 	strcpy(str,str1);
+
+	/*while(p <= str+length)
+	{
+        strcat(str1, p);
+        p+=strlen(p);
+        while(*p==0) //hello world
+        {
+            p++;
+        }
+	}*/
 }
 
 int main()
